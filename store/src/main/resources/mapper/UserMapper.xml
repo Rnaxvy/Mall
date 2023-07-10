@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.store.mapper.UserMapper">
+
+    <resultMap id="UserEntityMap" type="com.mall.store.entity.User">
+        <!--若数据库内字段名与类的属性名不一致，此处可进行匹配；一致则忽略-->
+        <!--主键不可省略，column代表数据库字段名，property代表类属性名 -->
+        <!--主键用<id>，其他的用<result>-->
+        <id column="uid" property="uid"></id>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="uid">
+        INSERT INTO st_user(
+         username,password,favor,phone,email,gender,avatar,is_delete,
+         created_user,created_time,modified_user,modified_time  <!--最后不要逗号-->
+        ) VALUES (
+         #{username},#{password},#{favor},#{phone},#{email},#{gender},#{avatar},#{is_delete},
+        #{created_user},#{created_time},#{modified_user},#{modified_time}   <!--最后不要分号-->
+       )
+    </insert>
+
+
+    <select id="findByUsername" resultMap="UserEntityMap">
+        SELECT * from st_user WHERE username= #{username}
+    </select>
+
+    <select id="getByUid" resultType="com.mall.store.entity.User">
+        SELECT * from st_user WHERE uid= #{uid}
+    </select>
+
+    <update id="updateByUid">
+        UPDATE st_address SET
+        <if test="phone!=null and phone.trim()!=''">phone=#{phone},</if>
+        <if test="email!=null and email.trim()!=''">email=#{email},</if>
+        <if test="gender!=null">gender=#{gender},</if>
+        modified_user=#{modified_user},
+        modified_time=#{modified_time}
+        WHERE uid=#{uid}
+    </update>
+    <update id="updateAvatarByUid">
+        UPDATE  st_user SET
+        avatar=#{avatar},
+        modified_user=#{modified_user},
+        modified_time=#{modified_time}
+        WHERE uid=#{uid}
+    </update>
+
+</mapper>

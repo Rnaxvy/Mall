@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mall.store.mapper.CartMapper">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="cid">
+        INSERT INTO st_cart(
+            uid,pid,price,price_neo,quantity,
+            created_user,created_time,modified_user,modified_time
+        )VALUES (
+            #{uid},#{pid},#{price},#{price_neo},#{quantity},
+            #{created_user},#{created_time},#{modified_user},#{modified_time}
+        )
+    </insert>
+    <update id="quantityChange">
+        UPDATE st_cart SET quantity=quantity+#{num},
+                           modified_user=#{modified_user},
+                           modified_time=#{modified_time}
+        WHERE cid=#{cid}
+    </update>
+
+    <select id="getByUPid" resultType="com.mall.store.entity.Cart">
+        SELECT * from st_cart WHERE uid=#{uid} and pid=#{pid}
+    </select>
+    <select id="showByUid" resultType="com.mall.store.vo.CartVo">
+        SELECT cid,uid,st_cart.pid,
+               st_cart.price,st_cart.quantity,
+               st_product.num,st_product.title,st_product.image,st_product.price AS price_neo
+        FROM st_cart LEFT JOIN st_product ON st_cart.pid=st_product.pid
+        WHERE uid=#{uid}
+        ORDER BY st_cart.created_time DESC
+    </select>
+
+    <delete id="deleteByCid">
+        DELETE FROM st_cart WHERE cid=#{cid}
+    </delete>
+</mapper>

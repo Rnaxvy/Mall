@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mall.store.mapper.AddressMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="aid">
+        INSERT INTO st_address(
+            uid,name,province_name,city_name,area_name,area_code,zip,addr,phone,tel,tag,is_default,
+            created_user,created_time,modified_user,modified_time
+        )VALUES(
+            #{uid},#{name},#{province_name},#{city_name},#{area_name},#{area_code},#{zip},#{addr},#{phone},#{tel},#{tag},#{is_default},
+            #{created_user},#{created_time},#{modified_user},#{modified_time}
+        )
+    </insert>
+
+    <select id="findByAid" resultType="com.mall.store.entity.Address">
+        SELECT * FROM st_address WHERE aid=#{aid}
+    </select>
+
+    <update id="updateByAid">
+        UPDATE st_address SET
+        <if test="address.name!=null and address.name.trim()!=''">name=#{address.name},</if>
+        <if test="address.phone!=null and address.phone.trim()!=''">phone=#{address.phone},</if>
+        modified_user=#{modified_user},
+        modified_time=#{modified_time}
+        WHERE aid=#{address.aid}
+    </update>
+    <update id="updateNoneDefault">
+        UPDATE st_address SET is_default=0
+    </update>
+    <update id="updateDefault">
+        UPDATE st_address SET is_default=1
+        WHERE aid=#{aid}
+    </update>
+    <select id="countLimit" resultType="java.lang.Integer">
+        SELECT count(*) FROM st_address WHERE uid=#{uid}
+    </select>
+
+    <select id="getByUid" resultType="com.mall.store.entity.Address">
+        SELECT * FROM st_address WHERE uid=#{uid}
+        ORDER BY is_default DESC,created_time DESC
+    </select>
+    <select id="defaultJudge" resultType="java.lang.Integer">
+        SELECT is_default FROM  st_address WHERE aid=#{aid}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM st_address WHERE aid=#{aid}
+    </delete>
+
+</mapper>

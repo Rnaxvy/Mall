@@ -1,0 +1,33 @@
+<html lang="en"xmlns:th=" http://www. thymeleaf.org ">
+	<head>
+		<meta charset="UTF-8">
+		<title>nextHello</title>
+	</head>
+	<body>
+		<form id="form-reg" role="form" class="form-horizontal">
+			<input type="text" name="username" placeholder="Username" required="" autofocus=""><br/>
+			<input type="password" name="password" placeholder="Password" required=""><br/>
+			<input id="btn-reg" type="button"value="注册" /><br/>
+		</form>
+	<script type="text/javascript">
+		$("#btn-reg").click(function () {
+			console.log($("#form-reg").serialize());
+			$.ajax({
+				url:"/users/reg",
+				type:"POST",
+				data:$("#form-reg").serialize(),
+				dataType:"JSON",
+				success:function(json){
+					if(json.state==200){
+						alert("注册成功");
+					}else alert("注册失败");
+				},
+				error:function(xhr){
+					alert("未知错误"+xhr.status);
+				}
+			});
+			
+		});
+	</script>
+	</body>
+</html>

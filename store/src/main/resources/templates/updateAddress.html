@@ -1,0 +1,46 @@
+<html lang="en"xmlns:th=" http://www. thymeleaf.org ">
+	<head>
+		<meta charset="UTF-8">
+		<title>nextHello</title>
+		<style>
+			table {
+				border-collapse: collapse;
+			}
+
+			table td {
+				padding: 10px;
+				border-bottom: 1px solid black;
+			}
+
+			table tr:last-child td {
+				border-bottom: none;
+			}
+
+			table td:not(:last-child) {
+				border-right: none;
+			}
+		</style>
+	</head>
+	<body>
+	<form th:action="@{/address/{aid}/update(aid=${address.aid})}" method="post">
+		<table>
+			<tr>
+				<td><span>收货人姓名:</span></td>
+				<td><input type="text" id="name" name="name" th:value="${address.name}" /></td>
+			</tr>
+			<tr>
+				<td><span>Phone: </span></td>
+				<td><input type="text" id="phone" name="phone" th:value="${address.phone}"/></td>
+			</tr>
+			<tr>
+				<td><span>默认地址:</span></td>
+				<td>
+					<input type="radio" name="is_default" value="1" th:checked="${address.is_default == 1}"/>是
+					<input type="radio" name="is_default" value="0" th:checked="${address.is_default == 0}" th:disabled="${address.is_default == 1}"/>否
+				</td>
+			</tr>
+		</table>
+		<button type="submit">修改信息</button><br/>
+	</form>
+	</body>
+</html>

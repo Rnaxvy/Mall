@@ -1,0 +1,14 @@
+<html lang="en"xmlns:th=" http://www. thymeleaf.org ">
+	<head>
+		<meta charset="UTF-8">
+		<title>nextHello</title>
+	</head>
+	<body>
+		<form th:action="@{/users/reg}" method="post">
+			<input type="text" id="username" name="username" ><br/>
+			<input type="password" id="password" name="password" ><br/>
+			<button type="submit">注册</button><br/>
+		</form>	
+
+	</body>
+</html>

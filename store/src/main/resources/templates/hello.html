@@ -1,0 +1,64 @@
+
+<html lang="en"xmlns:th=" http://www. thymeleaf.org ">
+	<head>
+		<title>fistHello</title>
+	</head>
+	<body>
+		helloWorld!<br/>World:你谁啊你
+		我<b>认识</b>你吗
+		<p><i>我</i>啊</p>
+		<p>所以你<b><i><u>到底</u></i></b>谁啊</p>
+		<img src="image/3d_rain.gif" width="300" height="210" title="三维降雨" alt="图片缺失"/>
+		<br/>
+		<img src="E:\workspace\zhtml\image/3d_rain.gif" alt="图片缺失"/>
+		<h1>你显示这几张图是要做什么</h1>
+		<h2>作为标题来说是不是太长了</h2>
+		<h1>啥玩意儿</h1>
+		
+		<ol type="I
+		" start="3">
+			<li>这是</li>
+			<li>一个</li>
+			<li>有序列表</li>
+		</ol>
+		
+		<ul>
+			<li>这是</li>
+			<li>一个</li>
+			<li>无序列表</li>
+		</ul>
+		
+		水分子：H<sub>2</sub>O  <br/>
+		9=3<sup>2</sup>&lt;10  <br/>
+		9&le;10  <br/>
+		10&gt;9  <br/>
+		10&ge;9  <br/>
+		注册商标&reg;   版权符号&copy; </br>
+		空格&nbsp;空格
+		<span>这里的文字可以突出显现</span> 但若没有添加属性则没啥两样<br/>
+		<a href="http://www.baidu.com" target="_self">超链接：百度一下,默认在本窗口打开</a><br/>
+		<a href="image/3d_rain.gif" target="_blanl">超链接：跳转图片，新建窗口打开</a><br/>
+		<!-- _parent 在父窗口打开 _top 在顶层窗口打开 -->
+		
+		<a th:href="@{/view}">测试配置类view</a><br/>
+		<form action="deal.html"><!-- 发送到处理模块 -->
+		姓名：<input type="text" name="name" value="输入你的名字"/><br/>
+		密码：<input type="password" name="pswd" /><br/>
+		性别：<input type="radio" name="gender" value="male"/>男
+			 <input type="radio" name="gender" value="female"/>女<br/>
+		爱好：<input type="checkbox" name="hobby" value="sing"/>唱
+			 <input type="checkbox" name="hobby" value="dance"/>跳
+			 <input type="checkbox" name="hobby" value="rap"/>饶舌
+			 <input type="checkbox" name="hobby" value="basketball"/>篮球<br/>
+		季节：<select name="season">
+				<option>春</option>
+				<option>夏</option>
+				<option>秋</option>
+				<option>冬</option>
+			 </select><br/>
+		备注：<textarea name="remark" rows="4" cols="50"></textarea><br/>
+		
+		<input type="submit" value="注 册"/>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,67 @@
+<html lang="en"xmlns:th=" http://www. thymeleaf.org ">
+<head>
+	<meta charset="UTF-8">
+	<title>nextHello</title>
+	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+	<style>
+		.borderless-button {
+			border: none;
+		}
+		table {
+			border-collapse: collapse;
+		}
+
+		table td {
+			padding: 10px;
+			border-bottom: 1px solid black;
+		}
+
+		table tr:last-child td {
+			border-bottom: none;
+		}
+
+		table td:not(:last-child) {
+			border-right: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<!-- 顶部区域内容，包括登录等按钮 -->
+		<form th:action="@{/users/userPage}" method="post">
+			<button type="submit">个人主页</button><br/>
+		</form>
+		<form th:action="@{/cart/show}" method="post">
+			<button type="submit">购物车</button>
+		</form>
+	</div>
+
+	<div id="content">
+		<div id="left-column">
+			<!-- 左侧区域内容 -->
+		</div>
+
+		<div id="right-column">
+			<!-- 右侧区域内容 -->
+			<h1>热销商品</h1>
+			<table>
+				<thead>
+				<tr>
+					<th>品名</th>
+					<th>价格</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="product : ${products}">
+					<td><form th:action="@{/products/{pid}/detail(pid=${product.pid})}" method="post">
+						<button class="borderless-button" type="submit" th:text="${product.title}"></button><br/>
+					</form>
+					</td>
+					<td><span th:text="${product.price}"></span></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

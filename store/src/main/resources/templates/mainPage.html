@@ -1,0 +1,14 @@
+<html lang="en"xmlns:th=" http://www. thymeleaf.org ">
+	<head>
+		<meta charset="UTF-8">
+		<title>nextHello</title>
+	</head>
+	<body>
+		<form th:action="@{/users/userPage}" method="post">
+			<button type="submit">个人信息</button><br/>
+		</form>
+		<form th:action="@{/address/show}" method="post">
+			<button type="submit">收货地址</button><br/>
+		</form>
+	</body>
+</html>

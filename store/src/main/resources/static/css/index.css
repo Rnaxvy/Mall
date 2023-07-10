@@ -1,0 +1,22 @@
+#header {
+    /* 顶部区域样式 */
+    height: 50px; /* 设置高度 */
+    background-color: #f0f0f0; /* 设置背景颜色 */
+}
+
+#content {
+    /* 内容区域样式 */
+    display: flex; /* 使用弹性布局 */
+}
+
+#left-column {
+    /* 左侧区域样式 */
+    flex: 1; /* 设置弹性系数为1，占据可用空间的1/3 */
+    background-color: #ccc; /* 设置背景颜色 */
+}
+
+#right-column {
+    /* 右侧区域样式 */
+    flex: 1; /* 设置弹性系数为1，占据可用空间的1/3 */
+    background-color: #ddd; /* 设置背景颜色 */
+}

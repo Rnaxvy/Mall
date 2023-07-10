@@ -1,0 +1,58 @@
+<html lang="en"xmlns:th=" http://www. thymeleaf.org ">
+	<head>
+		<meta charset="UTF-8">
+		<title>nextHello</title>
+		<style>
+			table {
+				border-collapse: collapse;
+			}
+
+			table td {
+				padding: 10px;
+				border-bottom: 1px solid black;
+			}
+
+			table tr:last-child td {
+				border-bottom: none;
+			}
+
+			table td:not(:last-child) {
+				border-right: none;
+			}
+		</style>
+	</head>
+	<body>
+			<table>
+				<thead>
+					<tr>
+						<th>收货人姓名</th>
+						<th>Phone</th>
+						<th>省</th>
+						<th>市</th>
+						<th>区</th>
+						<th>具体地址</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="address : ${addresses}">
+						<td><span th:text="${address.name}"></span></td>
+						<td><span th:text="${address.phone}"></span></td>
+						<td><span th:text="${address.province_name}"></span></td>
+						<td><span th:text="${address.city_name}"></span></td>
+						<td><span th:text="${address.area_name}"></span></td>
+						<td><span th:text="${address.addr}"></span></td>
+						<td><span th:if="${address.is_default == 1}">默认地址</span></td>
+						<td><form th:action="@{/address/${aid}/toUpdate}" method="post">
+							<button type="submit">修改</button><br/>
+						</form></td>
+					</tr>
+				</tbody>
+			</table>
+			<form th:action="@{/address/toAdd}" method="post">
+				<button type="submit">添加地址信息</button><br/>
+			</form>
+
+	</body>
+</html>
